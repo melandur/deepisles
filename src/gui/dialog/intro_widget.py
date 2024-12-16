@@ -54,18 +54,6 @@ class IntroWidget(QtWidgets.QWidget):
         grid_layout.addWidget(QtWidgets.QLabel('GPU'), 10, 1)
         found_gpu = self.user_specifications.get('GPU', None)
 
-        if found_gpu is None:
-            found_gpu_name = (
-                'No Nvidia drivers nor Nvidia GPU found. '
-                '\nDeepBraTumia does work without GPU, but rather slow.'
-                '\nCheck the list of supported GPUs.'
-                '\nBut got already an adequate GPU?'
-                '\nMaybe only some drivers are missing,'
-                '\nget them from the official NVIDIA site.'
-            )
-        else:
-            found_gpu_name = found_gpu.upper()
-
         grid_layout.addWidget(QtWidgets.QLabel(found_gpu_name), 10, 2)
         if found_gpu is None:
             if found_gpu is None:

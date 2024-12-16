@@ -55,7 +55,7 @@ CONFIG_FILE_EXPLAINER = OrderedDict(
                 'export_folder': [
                     'The location where results get stored.',
                     'Check that your path has read/write access\nand avoid cloud storage when possible.',
-                    'Downloads/DeepBraTumIA_export',
+                    'Downloads/DeepIsles_export',
                 ],
                 'export_file_extension': [
                     'Defines the output file type',

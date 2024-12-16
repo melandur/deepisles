@@ -199,7 +199,7 @@ class BatchMode(QtWidgets.QWidget):
 
     @staticmethod
     def show_main():
-        """Show main deepbratumia gui again"""
+        """Show main gui again"""
         pop_up_window(
             f'Batch mode has successfully finished. The results are in: {DEFAULT_EXPORT_FOLDER}', 'Information'
         )
