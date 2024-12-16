@@ -1,0 +1,21 @@
+{
+    "System": "Linux",
+    "Node_Name": "melandur",
+    "Release": "6.8.0-50-generic",
+    "Version": "#51-Ubuntu SMP PREEMPT_DYNAMIC Sat Nov  9 17:58:29 UTC 2024",
+    "Machine": "x86_64",
+    "CPU": "x86_64",
+    "CPU_Physical_Cores": 8,
+    "CPU_Cores_Total": 16,
+    "Memory": "30.50GB",
+    "Docker": true,
+    "Primary_Screen": "DP-0",
+    "Primary_Screen_Total_Size": [
+        3840,
+        2160
+    ],
+    "Primary_Screen_Available_Size": [
+        3840,
+        2160
+    ]
+}

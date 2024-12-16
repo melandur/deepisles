@@ -1,0 +1,166 @@
+{
+    "file_version": "1.0.0",
+    "data_reader": {
+        "active": true,
+        "params": {
+            "import_name_tag_dwi": [
+                "dwi.",
+                "-dwi",
+                "_dwi"
+            ],
+            "import_name_tag_adc": [
+                "adc.",
+                "-adc.",
+                "_adc."
+            ],
+            "import_name_tag_flair": [
+                "flair.",
+                "-flair",
+                "_flair"
+            ],
+            "dicom_folder_tag_dwi": [
+                "dwi"
+            ],
+            "dicom_folder_tag_adc": [
+                "adc"
+            ],
+            "dicom_folder_tag_flair": [
+                "flair",
+                "fla"
+            ]
+        },
+        "_add_sequence": "system_place_holder"
+    },
+    "dockers": {
+        "active": true,
+        "image": "isleschallenge/deepisles:1.0",
+        "params": {
+            "skull_strip": false,
+            "fast": false,
+            "parallelize": true,
+            "save_team_outputs": false,
+            "results_mni": false
+        }
+    },
+    "data_writer": {
+        "active": true,
+        "params": {
+            "export_folder": "/home/melandur/Downloads/DeepIsles_export",
+            "export_file_extension": ".nii.gz"
+        }
+    },
+    "meta_gui": {
+        "segmentation_label_color": [
+            [
+                0,
+                0,
+                0,
+                0
+            ],
+            [
+                255,
+                13,
+                34,
+                255
+            ],
+            [
+                0,
+                255,
+                60,
+                255
+            ],
+            [
+                0,
+                60,
+                255,
+                255
+            ],
+            [
+                255,
+                255,
+                0,
+                255
+            ],
+            [
+                20,
+                191,
+                235,
+                255
+            ],
+            [
+                158,
+                211,
+                154,
+                255
+            ],
+            [
+                190,
+                77,
+                38,
+                255
+            ],
+            [
+                0,
+                111,
+                76,
+                255
+            ],
+            [
+                55,
+                40,
+                51,
+                255
+            ],
+            [
+                247,
+                37,
+                108,
+                255
+            ],
+            [
+                185,
+                233,
+                9,
+                255
+            ],
+            [
+                50,
+                207,
+                218,
+                255
+            ],
+            [
+                210,
+                110,
+                206,
+                255
+            ],
+            [
+                215,
+                196,
+                45,
+                255
+            ],
+            [
+                251,
+                187,
+                168,
+                255
+            ],
+            [
+                16,
+                22,
+                144,
+                255
+            ],
+            [
+                120,
+                111,
+                76,
+                255
+            ]
+        ],
+        "show_intro_widget": false,
+        "show_metadata_viewer": true
+    }
+}
