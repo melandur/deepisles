@@ -294,7 +294,7 @@ class BatchMode(QtWidgets.QWidget):
         cases_to_delete = []
         for case in self.checked_case_paths:
             for modality in self.checked_case_paths[case]:
-                if 'seg_mask' != modality:
+                if 'flair' != modality:
                     if self.checked_case_paths[case][modality]['completeness_check_tag'] == 'no':
                         logger.debug(f'Clean dict removed case: {case}')
                         cases_to_delete.append(case)

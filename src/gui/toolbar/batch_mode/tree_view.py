@@ -62,7 +62,7 @@ class BMTreeView(QtWidgets.QTreeView):
                     child_1 = StandardItem(modality.capitalize())
                     item.setIcon(QtGui.QIcon(os.path.join(ICONS_BASE_PATH, 'uncheck.png')))
                     child_2 = StandardItem(item)
-                    child_3 = StandardItem('No valid path or missing sequence | This subject will be exclude')
+                    child_3 = StandardItem('No valid path or missing sequence')
                     child_3.setTextAlignment(QtCore.Qt.AlignLeft)
                     expand_indexes.append(case_index)
                 else:
