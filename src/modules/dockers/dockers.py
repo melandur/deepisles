@@ -7,7 +7,7 @@ import SimpleITK as sitk
 from loguru import logger
 import docker
 
-from src.gui.dialog.dialogs import pop_up_window_forced_waiting
+from src.gui.dialog.dialogs import pop_up_window_forced_waiting, pop_up_window
 from src.path_library import DEFAULT_EXPORT_FOLDER
 
 DataHandler = TypeVar('DataHandler')
@@ -22,10 +22,13 @@ class Dockers:
         self.tmp_path = None
         self.modalities = self.data_handler.get_active_modalities('ephemeral_sitk')
         self.case_name = self.data_handler.case_name
+        self.docker_pop = None
+        self.docker_nvidia_pop = None
         self.pop_up = None
 
         self.is_docker_available()
         self.is_nvidia_docker_available()
+        self.check_image_exists(self.config_file['image'])
 
 
     def __call__(self) -> None:
@@ -43,18 +46,6 @@ class Dockers:
 
         try:  # Run container
             logger.info(f'Using: {self.config_file["image"]}')
-
-            if self.check_image_exists(self.config_file['image']):
-                logger.info('Image locally available')
-            else:
-                logger.info('Image not locally available, pulling image')
-                self.pop_up = pop_up_window_forced_waiting(f'Pulling docker image, this may take a while. '
-                                                           f'\nThis is only done once. Alternatively, you can pull the '
-                                                           f'image manually using the terminal '
-                                                           f'-> docker pull {self.config_file["image"]}')
-                self.pop_up.show()
-                self.client.images.pull(self.config_file['image'])
-                self.pop_up.done(0)
 
             self.client.containers.run(
                 image=f'{self.config_file["image"]}',
@@ -107,18 +98,16 @@ class Dockers:
 
         return tmp_image_paths
 
-    @staticmethod
-    def is_docker_available():
+    def is_docker_available(self):
         try:
             client = docker.from_env()
             client.ping()
             logger.info('Docker available')
         except Exception as e:
+            self.docker_pop = pop_up_window('Please check if docker is installed and running. \nDocker installing guides are here -> https://docs.docker.com/desktop', 'Docker not found', 'error')
             raise Exception(f'Docker not available')
 
-
-    @staticmethod
-    def is_nvidia_docker_available():
+    def is_nvidia_docker_available(self):
         try:
             client = docker.from_env()
             client.containers.run(
@@ -132,13 +121,24 @@ class Dockers:
             )
             logger.info('Nvidia docker available')
         except Exception as e:
+
+            self.docker_nvidia_pop = pop_up_window(
+                'Please check if nvidia-docker is installed and running. \nNvidia-docker installing guides are here -> https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html',
+                'Nvidia Docker Toolkit not found', 'error')
             raise Exception(f'Nvidia docker not available')
 
-    @staticmethod
-    def check_image_exists(image_name):
+    def check_image_exists(self, image_name):
         client = docker.from_env()
         try:
             client.images.get(image_name)
-            return True
+            logger.info('Image locally available')
+
         except docker.errors.ImageNotFound:
-            return False
+            logger.info('Image not locally available, pulling image')
+            self.pop_up = pop_up_window_forced_waiting(f'Pulling docker image, this may take a while. '
+                                                       f'\nThis is only done once. Alternatively, you can pull the '
+                                                       f'image manually using the terminal '
+                                                       f'-> docker pull {self.config_file["image"]}')
+            self.pop_up.show()
+            self.client.images.pull(self.config_file['image'])
+            self.pop_up.done(0)
