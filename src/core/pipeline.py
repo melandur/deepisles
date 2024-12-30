@@ -1,10 +1,11 @@
 import os
 
-
+import SimpleITK as sitk
 from loguru import logger
 from PyQt5 import QtCore
 
-from src.core.data_manager import DataAnalyzer, DataReader, DataWriter
+import numpy as np
+from src.core.data_manager import DataAnalyzer, DataReader, DataWriter, DataHandler
 from src.core.utils import NestedDefaultDict, check_device_space, is_json, load_json
 from src.modules.dockers.dockers import Dockers
 
@@ -114,28 +115,28 @@ class Pipeline(QtCore.QThread):
                     self.case_name_message.emit(self.case_name.capitalize())
 
                     method = getattr(self, self.state)
-                    # try:
-                    method()
-                    # except Warning as warning:
-                    #     self.popup_message.emit(f'{capitalized_state}', 'Information', str(warning))
-                    #     self.error_message.emit(
-                    #         str(self.case_name),
-                    #         str(capitalized_state),
-                    #         str(warning),
-                    #         str(export_folder),
-                    #         'information',
-                    #     )
-                    #     break
-                    # except Exception as error:
-                    #     self.popup_message.emit(f'{capitalized_state} failed', 'Warning', str(error))
-                    #     self.error_message.emit(
-                    #         str(self.case_name),
-                    #         str(capitalized_state),
-                    #         str(error),
-                    #         str(export_folder),
-                    #         'warning',
-                    #     )
-                    #     break
+                    try:
+                        method()
+                    except Warning as warning:
+                        self.popup_message.emit(f'{capitalized_state}', 'Information', str(warning))
+                        self.error_message.emit(
+                            str(self.case_name),
+                            str(capitalized_state),
+                            str(warning),
+                            str(export_folder),
+                            'information',
+                        )
+                        break
+                    except Exception as error:
+                        self.popup_message.emit(f'{capitalized_state} failed', 'Warning', str(error))
+                        self.error_message.emit(
+                            str(self.case_name),
+                            str(capitalized_state),
+                            str(error),
+                            str(export_folder),
+                            'warning',
+                        )
+                        break
 
     def data_reader(self) -> None:
         """Read data"""
@@ -145,8 +146,14 @@ class Pipeline(QtCore.QThread):
 
     def dockers(self) -> None:
         """Run dockers"""
-        Dockers(self.data_handler, self.config_file)()
-        self.data_handler.copy_ephemeral_to_lasting_store(state='dockers')
+        mask_path = Dockers(self.data_handler, self.config_file)()
+        mask_sitk = sitk.ReadImage(mask_path, sitk.sitkInt8)
+        self.data_handler.set_ephemeral_results('seg_mask_atlas_sitk', mask_sitk)
+        seg_mask_ndarray = np.fliplr(sitk.GetArrayFromImage(mask_sitk))
+        self.data_handler.set_ephemeral_results(key='seg_mask_atlas_ndarray', value=seg_mask_ndarray)
+        self.data_handler.copy_ephemeral_input_to_ephemeral_output()
+        self.data_handler.copy_ephemeral_to_lasting_store(state=self.state)
+        self.viewer_synced.emit(self.state)
 
     def data_writer(self) -> None:
         """Call data writer"""

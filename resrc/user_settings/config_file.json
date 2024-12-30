@@ -36,7 +36,7 @@
         "image": "isleschallenge/deepisles:1.0",
         "params": {
             "skull_strip": false,
-            "fast": false,
+            "fast": true,
             "parallelize": true,
             "save_team_outputs": false,
             "results_mni": false

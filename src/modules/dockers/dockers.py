@@ -7,6 +7,7 @@ import SimpleITK as sitk
 from loguru import logger
 import docker
 
+from src.gui.dialog.dialogs import pop_up_window_forced_waiting
 from src.path_library import DEFAULT_EXPORT_FOLDER
 
 DataHandler = TypeVar('DataHandler')
@@ -21,6 +22,7 @@ class Dockers:
         self.tmp_path = None
         self.modalities = self.data_handler.get_active_modalities('ephemeral_sitk')
         self.case_name = self.data_handler.case_name
+        self.pop_up = None
 
         self.is_docker_available()
         self.is_nvidia_docker_available()
@@ -46,6 +48,13 @@ class Dockers:
                 logger.info('Image locally available')
             else:
                 logger.info('Image not locally available, pulling image')
+                self.pop_up = pop_up_window_forced_waiting(f'Pulling docker image, this may take a while. '
+                                                           f'\nThis is only done once. Alternatively, you can pull the '
+                                                           f'image manually using the terminal '
+                                                           f'-> docker pull {self.config_file["image"]}')
+                self.pop_up.show()
+                self.client.images.pull(self.config_file['image'])
+                self.pop_up.done(0)
 
             self.client.containers.run(
                 image=f'{self.config_file["image"]}',
@@ -62,8 +71,14 @@ class Dockers:
             for key, values in file_paths.items():
                 os.remove(values)
 
+            seg_mask_path = os.path.join(self.tmp_path, 'results', 'lesion_msk.nii.gz')
+
         except Exception as e:
+            seg_mask_path = None
             logger.error(f'Container error: {e}')
+
+        return seg_mask_path
+
 
 
     def _write_tmp_image(self, modality: str, export_path: str) -> str:

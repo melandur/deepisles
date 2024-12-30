@@ -60,3 +60,4 @@ class SingleMode(QtWidgets.QWidget):
     def sync_viewer(self, state):
         self.core.sync_viewers_stats.sync(state)
         self.mw_viewers_updater.refresh_viewers()
+
