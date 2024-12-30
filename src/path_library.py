@@ -2,7 +2,6 @@ import os
 import sys
 
 # Defines the name and activated features of the software
-LOGGER = 'INFO'  # INFO, DEBUG, TRACE
 BUILD_VERSION = '1.0.0'
 
 PROJECT_BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

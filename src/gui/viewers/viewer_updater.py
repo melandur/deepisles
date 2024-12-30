@@ -50,22 +50,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 if self.core.viewer_stats.viewer_4.activated:
                     viewers_img_index.append(self.core.viewer_stats.viewer_4.img_index)
 
-            if self.core.viewer_stats.viewer_5.qlabel_viewer is not None:
-                if self.core.viewer_stats.viewer_5.activated:
-                    viewers_img_index.append(self.core.viewer_stats.viewer_5.img_index)
-
-            if self.core.viewer_stats.viewer_6.qlabel_viewer is not None:
-                if self.core.viewer_stats.viewer_6.activated:
-                    viewers_img_index.append(self.core.viewer_stats.viewer_6.img_index)
-
-            if self.core.viewer_stats.viewer_7.qlabel_viewer is not None:
-                if self.core.viewer_stats.viewer_7.activated:
-                    viewers_img_index.append(self.core.viewer_stats.viewer_7.img_index)
-
-            if self.core.viewer_stats.viewer_8.qlabel_viewer is not None:
-                if self.core.viewer_stats.viewer_8.activated:
-                    viewers_img_index.append(self.core.viewer_stats.viewer_8.img_index)
-
             try:
                 most_frequent_index = self.most_frequent(viewers_img_index)
                 viewers_img_index = [x for x in viewers_img_index if x != most_frequent_index][0]
@@ -73,10 +57,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.img_index = viewers_img_index
                 self.core.viewer_stats.viewer_3.img_index = viewers_img_index
                 self.core.viewer_stats.viewer_4.img_index = viewers_img_index
-                self.core.viewer_stats.viewer_5.img_index = viewers_img_index
-                self.core.viewer_stats.viewer_6.img_index = viewers_img_index
-                self.core.viewer_stats.viewer_7.img_index = viewers_img_index
-                self.core.viewer_stats.viewer_8.img_index = viewers_img_index
             except:
                 pass
 
@@ -85,10 +65,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.img_opacity,
                 self.core.viewer_stats.viewer_3.img_opacity,
                 self.core.viewer_stats.viewer_4.img_opacity,
-                self.core.viewer_stats.viewer_5.img_opacity,
-                self.core.viewer_stats.viewer_6.img_opacity,
-                self.core.viewer_stats.viewer_7.img_opacity,
-                self.core.viewer_stats.viewer_8.img_opacity,
             ]
             most_frequent_opacity = self.most_frequent(viewers_img_opacity)
             try:
@@ -97,10 +73,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.img_opacity = viewers_img_opacity
                 self.core.viewer_stats.viewer_3.img_opacity = viewers_img_opacity
                 self.core.viewer_stats.viewer_4.img_opacity = viewers_img_opacity
-                self.core.viewer_stats.viewer_5.img_opacity = viewers_img_opacity
-                self.core.viewer_stats.viewer_6.img_opacity = viewers_img_opacity
-                self.core.viewer_stats.viewer_7.img_opacity = viewers_img_opacity
-                self.core.viewer_stats.viewer_8.img_opacity = viewers_img_opacity
             except:
                 pass
 
@@ -109,10 +81,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.zoom_pos,
                 self.core.viewer_stats.viewer_3.zoom_pos,
                 self.core.viewer_stats.viewer_4.zoom_pos,
-                self.core.viewer_stats.viewer_5.zoom_pos,
-                self.core.viewer_stats.viewer_6.zoom_pos,
-                self.core.viewer_stats.viewer_7.zoom_pos,
-                self.core.viewer_stats.viewer_8.zoom_pos,
             ]
             most_frequent_zoom_pos = self.most_frequent(viewers_zoom_pos)
             try:
@@ -121,10 +89,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.zoom_pos = viewers_zoom_pos
                 self.core.viewer_stats.viewer_3.zoom_pos = viewers_zoom_pos
                 self.core.viewer_stats.viewer_4.zoom_pos = viewers_zoom_pos
-                self.core.viewer_stats.viewer_5.zoom_pos = viewers_zoom_pos
-                self.core.viewer_stats.viewer_6.zoom_pos = viewers_zoom_pos
-                self.core.viewer_stats.viewer_7.zoom_pos = viewers_zoom_pos
-                self.core.viewer_stats.viewer_8.zoom_pos = viewers_zoom_pos
             except:
                 pass
 
@@ -133,10 +97,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.zoom_factor,
                 self.core.viewer_stats.viewer_3.zoom_factor,
                 self.core.viewer_stats.viewer_4.zoom_factor,
-                self.core.viewer_stats.viewer_5.zoom_factor,
-                self.core.viewer_stats.viewer_6.zoom_factor,
-                self.core.viewer_stats.viewer_7.zoom_factor,
-                self.core.viewer_stats.viewer_8.zoom_factor,
             ]
             most_frequent_zoom_factor = self.most_frequent(viewers_zoom_factor)
             try:
@@ -145,10 +105,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
                 self.core.viewer_stats.viewer_2.zoom_factor = viewers_zoom_factor
                 self.core.viewer_stats.viewer_3.zoom_factor = viewers_zoom_factor
                 self.core.viewer_stats.viewer_4.zoom_factor = viewers_zoom_factor
-                self.core.viewer_stats.viewer_5.zoom_factor = viewers_zoom_factor
-                self.core.viewer_stats.viewer_6.zoom_factor = viewers_zoom_factor
-                self.core.viewer_stats.viewer_7.zoom_factor = viewers_zoom_factor
-                self.core.viewer_stats.viewer_8.zoom_factor = viewers_zoom_factor
             except:
                 pass
 
@@ -160,14 +116,6 @@ class ViewerUpdater(QtWidgets.QMainWindow):
             self.refresh(self.core.viewer_stats.viewer_3)
         if self.core.viewer_stats.viewer_4.qlabel_viewer is not None:
             self.refresh(self.core.viewer_stats.viewer_4)
-        if self.core.viewer_stats.viewer_5.qlabel_viewer is not None:
-            self.refresh(self.core.viewer_stats.viewer_5)
-        if self.core.viewer_stats.viewer_6.qlabel_viewer is not None:
-            self.refresh(self.core.viewer_stats.viewer_6)
-        if self.core.viewer_stats.viewer_7.qlabel_viewer is not None:
-            self.refresh(self.core.viewer_stats.viewer_7)
-        if self.core.viewer_stats.viewer_8.qlabel_viewer is not None:
-            self.refresh(self.core.viewer_stats.viewer_8)
 
     @staticmethod
     @logger.catch

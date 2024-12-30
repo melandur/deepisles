@@ -138,7 +138,7 @@ class DataAnalyzer(ConfigFileHandler):
         return store_tag
 
     @logger.catch()
-    def check_dicom_folder_tag(self, folder_name: str, exclude_seg: bool = True) -> bool:
+    def check_dicom_folder_tag(self, folder_name: str) -> bool:
         """Returns True if mri tag is supported"""
         state = False
         for mri_tag in USED_MODALITY_NAMES:
@@ -150,7 +150,7 @@ class DataAnalyzer(ConfigFileHandler):
         return state
 
     @logger.catch()
-    def get_dicom_folder_tag(self, file_name: str, exclude_seg: bool = True) -> str:
+    def get_dicom_folder_tag(self, file_name: str) -> str:
         """Returns found mri tag"""
         store_tag = None
         for mri_tag in USED_MODALITY_NAMES:

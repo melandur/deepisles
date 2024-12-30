@@ -75,7 +75,7 @@ class SyncViewerStats:
         if self.viewer_stats.viewer_3.qlabel_viewer is not None:
             modality_name = ''
             if 2 < len(self.used_modality_names):
-                modality_name = self.used_modality_names[2]
+                modality_name = self.used_modality_names[0]
             self.viewer_stats.viewer_3.title = modality_name.capitalize()
             if state != 'segmentation' and modality_name != '':
                 img = self.data_handler.get_from_lasting_store(f'{modality_name}_{state}_sitk')
@@ -84,14 +84,14 @@ class SyncViewerStats:
                     title=modality_name.capitalize(),
                     orientation='transverse',
                     linking=True,
-                    activated=True,
+                    activated=False,
                 )
             self.viewer_stats.viewer_3.seg_data = seg_mask_ndarray
 
         if self.viewer_stats.viewer_4.qlabel_viewer is not None:
             modality_name = ''
             if 3 < len(self.used_modality_names):
-                modality_name = self.used_modality_names[3]
+                modality_name = self.used_modality_names[0]
             self.viewer_stats.viewer_4.title = modality_name.capitalize()
             if state != 'segmentation' and modality_name != '':
                 img = self.data_handler.get_from_lasting_store(f'{modality_name}_{state}_sitk')
@@ -100,73 +100,9 @@ class SyncViewerStats:
                     title=modality_name.capitalize(),
                     orientation='transverse',
                     linking=True,
-                    activated=True,
+                    activated=False,
                 )
             self.viewer_stats.viewer_4.seg_data = seg_mask_ndarray
-
-        if self.viewer_stats.viewer_5.qlabel_viewer is not None:
-            modality_name = ''
-            if 4 < len(self.used_modality_names):
-                modality_name = self.used_modality_names[4]
-            self.viewer_stats.viewer_5.title = modality_name.capitalize()
-            if state != 'segmentation' and modality_name != '':
-                img = self.data_handler.get_from_lasting_store(f'{modality_name}_{state}_sitk')
-                self.viewer_stats.viewer_5.load(
-                    img_data=sitk_to_ndarray_image_preprocessed(img),
-                    title=modality_name.capitalize(),
-                    orientation='transverse',
-                    linking=True,
-                    activated=True,
-                )
-            self.viewer_stats.viewer_5.seg_data = seg_mask_ndarray
-
-        if self.viewer_stats.viewer_6.qlabel_viewer is not None:
-            modality_name = ''
-            if 5 < len(self.used_modality_names):
-                modality_name = self.used_modality_names[5]
-            self.viewer_stats.viewer_6.title = modality_name.capitalize()
-            if state != 'segmentation' and modality_name != '':
-                img = self.data_handler.get_from_lasting_store(f'{modality_name}_{state}_sitk')
-                self.viewer_stats.viewer_6.load(
-                    img_data=sitk_to_ndarray_image_preprocessed(img),
-                    title=modality_name.capitalize(),
-                    orientation='transverse',
-                    linking=True,
-                    activated=True,
-                )
-            self.viewer_stats.viewer_6.seg_data = seg_mask_ndarray
-
-        if self.viewer_stats.viewer_7.qlabel_viewer is not None:
-            modality_name = ''
-            if 6 < len(self.used_modality_names):
-                modality_name = self.used_modality_names[6]
-            self.viewer_stats.viewer_7.title = modality_name.capitalize()
-            if state != 'segmentation' and modality_name != '':
-                img = self.data_handler.get_from_lasting_store(f'{modality_name}_{state}_sitk')
-                self.viewer_stats.viewer_7.load(
-                    img_data=sitk_to_ndarray_image_preprocessed(img),
-                    title=modality_name.capitalize(),
-                    orientation='transverse',
-                    linking=True,
-                    activated=True,
-                )
-            self.viewer_stats.viewer_7.seg_data = seg_mask_ndarray
-
-        if self.viewer_stats.viewer_8.qlabel_viewer is not None:
-            modality_name = ''
-            if 7 < len(self.used_modality_names):
-                modality_name = self.used_modality_names[7]
-            self.viewer_stats.viewer_8.title = modality_name.capitalize()
-            if state != 'segmentation' and modality_name != '':
-                img = self.data_handler.get_from_lasting_store(f'{modality_name}_{state}_sitk')
-                self.viewer_stats.viewer_8.load(
-                    img_data=sitk_to_ndarray_image_preprocessed(img),
-                    title=modality_name.capitalize(),
-                    orientation='transverse',
-                    linking=True,
-                    activated=True,
-                )
-            self.viewer_stats.viewer_8.seg_data = seg_mask_ndarray
 
         viewers_img_index = []
         if self.viewer_stats.viewer_1.qlabel_viewer is not None:
@@ -181,18 +117,6 @@ class SyncViewerStats:
         if self.viewer_stats.viewer_4.qlabel_viewer is not None:
             if self.viewer_stats.viewer_4.activated:
                 viewers_img_index.append(self.viewer_stats.viewer_4.img_index)
-        if self.viewer_stats.viewer_5.qlabel_viewer is not None:
-            if self.viewer_stats.viewer_5.activated:
-                viewers_img_index.append(self.viewer_stats.viewer_5.img_index)
-        if self.viewer_stats.viewer_6.qlabel_viewer is not None:
-            if self.viewer_stats.viewer_6.activated:
-                viewers_img_index.append(self.viewer_stats.viewer_6.img_index)
-        if self.viewer_stats.viewer_7.qlabel_viewer is not None:
-            if self.viewer_stats.viewer_7.activated:
-                viewers_img_index.append(self.viewer_stats.viewer_7.img_index)
-        if self.viewer_stats.viewer_8.qlabel_viewer is not None:
-            if self.viewer_stats.viewer_8.activated:
-                viewers_img_index.append(self.viewer_stats.viewer_8.img_index)
 
         try:
             viewers_img_index = np.asarray(viewers_img_index)
@@ -202,9 +126,5 @@ class SyncViewerStats:
                 self.viewer_stats.viewer_2.img_index = min_index
                 self.viewer_stats.viewer_3.img_index = min_index
                 self.viewer_stats.viewer_4.img_index = min_index
-                self.viewer_stats.viewer_5.img_index = min_index
-                self.viewer_stats.viewer_6.img_index = min_index
-                self.viewer_stats.viewer_7.img_index = min_index
-                self.viewer_stats.viewer_8.img_index = min_index
         except:
             logger.debug('Scroll error caused by sync min index')

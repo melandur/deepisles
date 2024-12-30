@@ -42,11 +42,11 @@ CONFIG_FILE_EXPLAINER = OrderedDict(
             'active': True,
             'image': ['Docker image', 'Docker hub image path', 'isleschallenge/deepisles:1.0'],
             'params': {
-                'skull_strip': False,
-                'fast': False,
-                'parallelize': True,
-                'save_team_outputs': False,
-                'results_mni': False,
+                'skull_strip': ['Perform skull stripping on input images', '', False],
+                'fast': ['Run a single model for faster execution', '', False],
+                'parallelize': ['Up to 50% faster inference on GPUs with ≥12 GB memory', '', True],
+                'save_team_outputs': ['Save team outputs', '', False],
+                'results_mni': ['Save images and outputs in MNI', '', False],
             }
         },
         'data_writer': {

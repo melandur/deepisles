@@ -53,6 +53,8 @@ class CasePresenterWidget(QtWidgets.QWidget):
                 message = f'Set file path for {modality_name}'
                 if 'seg' in modality_name:
                     message = f'Set file path for {modality_name} (optional)'
+                if 'flair' in modality_name:
+                    message = f'Set file path for {modality_name} (optional)'
                 self.case_paths[self.case_name][modality_name] = message
 
         for modality_name in sorted(self.case_paths[self.case_name]):
@@ -98,6 +100,7 @@ class CasePresenterWidget(QtWidgets.QWidget):
                 not os.path.isfile(line_edit.text())
                 and not os.path.isdir(line_edit.text())
                 and 'seg' not in modality_name
+                and 'flair' not in modality_name
             ):
                 pop_up_window(
                     text=f'{modality_name.capitalize()} file path/dir does not exist',

@@ -1,6 +1,5 @@
 import sys
 
-import PyQt5.sip  # needed by nuitka for building
 from PyQt5 import QtWidgets
 from loguru import logger
 
@@ -9,6 +8,9 @@ from src.gui.style.style_settings import StyleSheetModifier
 
 
 if __name__ == '__main__':
+
+    logger.remove()
+    logger.add(sys.stdout, level='TRACE')
 
     logger.info('Start main')
 

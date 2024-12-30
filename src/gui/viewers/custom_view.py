@@ -366,7 +366,6 @@ class UpdatePanelQDockWidget(QtWidgets.QDockWidget):
         super().__init__()
 
         self.mw = mw
-        # self.text_store_software = ''
         self.text_store_model = ''
         self.setAllowedAreas(QtCore.Qt.LeftDockWidgetArea)
         self.setAllowedAreas(QtCore.Qt.RightDockWidgetArea)

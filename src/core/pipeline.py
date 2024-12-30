@@ -114,28 +114,28 @@ class Pipeline(QtCore.QThread):
                     self.case_name_message.emit(self.case_name.capitalize())
 
                     method = getattr(self, self.state)
-                    try:
-                        method()
-                    except Warning as warning:
-                        self.popup_message.emit(f'{capitalized_state}', 'Information', str(warning))
-                        self.error_message.emit(
-                            str(self.case_name),
-                            str(capitalized_state),
-                            str(warning),
-                            str(export_folder),
-                            'information',
-                        )
-                        break
-                    except Exception as error:
-                        self.popup_message.emit(f'{capitalized_state} failed', 'Warning', str(error))
-                        self.error_message.emit(
-                            str(self.case_name),
-                            str(capitalized_state),
-                            str(error),
-                            str(export_folder),
-                            'warning',
-                        )
-                        break
+                    # try:
+                    method()
+                    # except Warning as warning:
+                    #     self.popup_message.emit(f'{capitalized_state}', 'Information', str(warning))
+                    #     self.error_message.emit(
+                    #         str(self.case_name),
+                    #         str(capitalized_state),
+                    #         str(warning),
+                    #         str(export_folder),
+                    #         'information',
+                    #     )
+                    #     break
+                    # except Exception as error:
+                    #     self.popup_message.emit(f'{capitalized_state} failed', 'Warning', str(error))
+                    #     self.error_message.emit(
+                    #         str(self.case_name),
+                    #         str(capitalized_state),
+                    #         str(error),
+                    #         str(export_folder),
+                    #         'warning',
+                    #     )
+                    #     break
 
     def data_reader(self) -> None:
         """Read data"""

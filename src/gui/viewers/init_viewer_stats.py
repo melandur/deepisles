@@ -14,9 +14,5 @@ class InitViewerStats:
         self.viewer_2 = ViewerStats(path_master, config_file_handler)
         self.viewer_3 = ViewerStats(path_master, config_file_handler)
         self.viewer_4 = ViewerStats(path_master, config_file_handler)
-        self.viewer_5 = ViewerStats(path_master, config_file_handler)
-        self.viewer_6 = ViewerStats(path_master, config_file_handler)
-        self.viewer_7 = ViewerStats(path_master, config_file_handler)
-        self.viewer_8 = ViewerStats(path_master, config_file_handler)
 
         self.left_panel_widget = CustomSidePanelQDockWidget(app)
