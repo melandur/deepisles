@@ -40,7 +40,7 @@ CONFIG_FILE_EXPLAINER = OrderedDict(
         },
         'dockers': {
             'active': True,
-            'image': ['Docker image', 'Docker hub image path', 'isleschallenge/deepisles:1.0'],
+            'image': ['Docker image', 'Docker hub image path', 'isleschallenge/deepisles:latest'],
             'params': {
                 'skull_strip': ['Perform skull stripping on input images', '', False],
                 'fast': ['Run a single model for faster execution', '', False],

@@ -49,7 +49,7 @@ CONFIG_FILE = OrderedDict(
         },
         'dockers': {
             'active': True,
-            'image': 'isleschallenge/deepisles:1.0',
+            'image': 'isleschallenge/deepisles:latest',
             'params': {
                 'skull_strip': False,
                 'fast': False,

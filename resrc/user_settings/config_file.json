@@ -33,7 +33,7 @@
     },
     "dockers": {
         "active": true,
-        "image": "isleschallenge/deepisles:1.0",
+        "image": "isleschallenge/deepisles:latest",
         "params": {
             "skull_strip": false,
             "fast": true,
@@ -45,7 +45,7 @@
     "data_writer": {
         "active": true,
         "params": {
-            "export_folder": "/home/melandur/Downloads/DeepIsles_export",
+            "export_folder": "/home/ezequiel/Downloads/DeepIsles_export",
             "export_file_extension": ".nii.gz"
         }
     },
@@ -160,7 +160,7 @@
                 255
             ]
         ],
-        "show_intro_widget": false,
+        "show_intro_widget": true,
         "show_metadata_viewer": true
     }
 }
