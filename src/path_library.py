@@ -10,6 +10,7 @@ RESRC_BASE_PATH = os.path.join(PROJECT_BASE_PATH, 'resrc')
 ICONS_BASE_PATH = os.path.join(RESRC_BASE_PATH, 'gui', 'icons')
 USER_SETTINGS_PATH = os.path.join(RESRC_BASE_PATH, 'user_settings')
 STORAGE_BASE_PATH = RESRC_BASE_PATH
+APP_ICON = os.path.join(ICONS_BASE_PATH, 'deepISLES.png')
 
 LAST_VISITED_FOLDER_JSON = 'last_visited_folder.json'
 USER_STORAGE_SETTINGS_JSON = 'user_settings.json'

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Name=DeepISLES
+GenericName=DeepISLES
+Comment=Deep-learning based analysis tool.
+Exec=/opt/deepisles/main.bin
+Icon=/opt/deepisles/resrc/gui/icons/deepISLES.png
+Terminal=True
+Type=Application
+Categories=Development;

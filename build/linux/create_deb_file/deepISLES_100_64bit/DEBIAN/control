@@ -1,0 +1,8 @@
+Package: DeepISLES
+Version: 1.0.0
+Architecture: all
+Essential: no
+Priority: optional
+Depends: build-essential
+Maintainer: melandur
+Description: Deep-learning based analysis tool.

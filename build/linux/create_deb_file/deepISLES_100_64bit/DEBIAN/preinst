@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Pre-install script to remove old deepisles software
+
+echo "Looking for old DeepIsles..."
+
+if [ -d "/opt/deepislse" ]; then
+	sudo rm -f "/opt/deepisles"
+	echo "Removed old deepisles version from /opt/..."
+fi
+if [ -f "/usr/share/applications/deepisles.desktop" ]; then
+	sudo rm -f "/usr/share/applications/deepisles.desktop"
+	echo "Removed old deepisles version from /usr/share/applications/..."
+fi

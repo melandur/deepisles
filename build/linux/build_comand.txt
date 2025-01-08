@@ -1,0 +1,2 @@
+chmod -R 775 deepISLES_100_64bit/
+dpkg-deb --build deepISLES_100_64bit/
