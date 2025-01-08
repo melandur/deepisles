@@ -100,5 +100,4 @@ main.dist
 src/utility/packages/SimpleITK/_SimpleITK.cp37-win_amd64.pyd
 src/utility/packages/SimpleITK/_SimpleITK.cpython-37m-darwin.so
 src/utility/packages/SimpleITK/_SimpleITK.cpython-37m-x86_64-linux-gnu.so
-
-
+__pycache__/
