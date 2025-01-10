@@ -52,10 +52,10 @@ docker run --rm --gpus all ubuntu nvidia-smi
 
 #### Windows
 #### Step 3.1: Settings
-Start docker application as administrator.
-Select the settings option from the tray icon.
-In General tab, enable the option "Use the WSL 2 based engine".
-Apply and restart docker.
+Start docker application as administrator.\
+Select the settings option from the tray icon.\
+In General tab, enable the option "Use the WSL 2 based engine".\
+Apply and restart docker.\
 
 
 ---
@@ -64,3 +64,9 @@ Apply and restart docker.
 Run main.py to start the gui, use the appended test cases in the code repo to get familiar with the workflows.
 
 ---
+
+#### Installers
+## Link Windows:
+## Link Ubuntu (Version > 20.04):
+Optional way to install the deb file sudo dpkg -i <Path-of-the-Deb-Package
+
