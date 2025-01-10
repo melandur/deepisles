@@ -66,7 +66,7 @@ Run main.py to start the gui, use the appended test cases in the code repo to ge
 ---
 
 #### Installers
-## Link Windows:
-## Link Ubuntu (Version > 20.04):
+##### Link Windows:
+##### Link Ubuntu (Version > 20.04):
 Optional way to install the deb file sudo dpkg -i <Path-of-the-Deb-Package
 
