@@ -35,6 +35,7 @@ docker --version
 
 ### 3. NVIDIA Docker Toolkit Installation (Optional for GPU Acceleration)
 
+#### Linux
 #### Step 3.1: Install NVIDIA Drivers
 Install the correct NVIDIA drivers for your GPU. You can download them from the [NVIDIA Drivers page](https://www.nvidia.com/Download/index.aspx).
 
@@ -48,6 +49,14 @@ Test the setup using:
 ```bash
 docker run --rm --gpus all ubuntu nvidia-smi
 ```
+
+#### Windows
+#### Step 3.1: Settings
+Start docker application as administrator.
+Select the settings option from the tray icon.
+In General tab, enable the option "Use the WSL 2 based engine".
+Apply and restart docker.
+
 
 ---
 

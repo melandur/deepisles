@@ -7,7 +7,6 @@ import SimpleITK as sitk
 from loguru import logger
 import docker
 
-from src.gui.dialog.dialogs import pop_up_window_forced_waiting, pop_up_window
 from src.path_library import DEFAULT_EXPORT_FOLDER
 
 DataHandler = TypeVar('DataHandler')
@@ -30,7 +29,6 @@ class Dockers:
         self.is_docker_available()
         self.is_nvidia_docker_available()
         self.check_image_exists(self.config_file['image'])
-
 
     def __call__(self) -> None:
         file_paths = self._ephemeral_to_tmp_local_store()
@@ -71,8 +69,6 @@ class Dockers:
 
         return seg_mask_path
 
-
-
     def _write_tmp_image(self, modality: str, export_path: str) -> str:
         """Writes image to local path"""
         case_name = self.data_handler.case_name
@@ -105,8 +101,7 @@ class Dockers:
             client.ping()
             logger.info('Docker available')
         except Exception as e:
-            self.docker_pop = pop_up_window('Please check if docker is installed and running. \nDocker installing guides are here -> https://docs.docker.com/desktop', 'Docker not found', 'error')
-            raise Exception(f'Docker not available')
+            raise Exception(f'Please check if docker is installed and running. \nDocker installing guides are here -> https://docs.docker.com/desktop')
 
     def is_nvidia_docker_available(self):
         try:
@@ -122,11 +117,7 @@ class Dockers:
             )
             logger.info('Nvidia docker available')
         except Exception as e:
-
-            self.docker_nvidia_pop = pop_up_window(
-                'Please check if nvidia-docker is installed and running. \nNvidia-docker installing guides are here -> https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html',
-                'Nvidia Docker Toolkit not found', 'error')
-            raise Exception(f'Nvidia docker not available')
+            raise Exception('Please check if nvidia-docker is installed and running. \nNvidia-docker installing guides are here -> https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/index.html',)
 
     def check_image_exists(self, image_name):
         self.client = docker.from_env()
@@ -136,12 +127,7 @@ class Dockers:
 
         except Exception as e:
             logger.info('Image not locally available, pulling image')
-            self.pop_up = pop_up_window_forced_waiting(f'Pulling docker image, this may take a while. '
-                                                       f'\nThis is only done once. Alternatively, you can pull the '
-                                                       f'image manually using the terminal '
-                                                       f'-> docker pull {self.config_file["image"]}')
-            self.pop_up.show()
             image = self.config_file['image'].split(':')[0]
             tag = self.config_file['image'].split(':')[-1]
             self.client.images.pull(image, tag)
-            self.pop_up.done(0)
+
