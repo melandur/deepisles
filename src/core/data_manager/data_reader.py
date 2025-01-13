@@ -77,12 +77,13 @@ class DataReader:
     def dicom_sequence_reader(self, path: str, modality_tag: str) -> None:
         """Reads data and meta data of dicom sequences"""
         if modality_tag != 'seg_mask':
-            self.data_handler.case_name = os.path.basename(path)
+            self.data_handler.case_name = os.path.basename(os.path.dirname(path))
 
             reader = sitk.ImageSeriesReader()
             series_ids = reader.GetGDCMSeriesIDs(path)
             dicom_names = reader.GetGDCMSeriesFileNames(path, series_ids[0])
             reader.SetFileNames(dicom_names)
+            reader.LoadPrivateTagsOn()
 
             meta_data = sitk.ReadImage(dicom_names[0])
             meta_data_dict = {}

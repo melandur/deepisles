@@ -75,7 +75,7 @@ class DataAnalyzer(ConfigFileHandler):
 
         folder_name = os.path.basename(root)
         if self.check_dicom_type(file) and self.check_dicom_folder_tag(folder_name):  # Checking for dicom
-            sequence_type = self.get_dicom_folder_tag(os.path.basename(root), exclude_seg=True)
+            sequence_type = self.get_dicom_folder_tag(os.path.basename(root))
             if sequence_type:
                 self.search_dicom = False
                 case_name = os.path.basename(os.path.dirname(root))
